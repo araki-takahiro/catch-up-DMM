@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="notice-container">
+        <p class="notice"><%= flash[:notice] %></p>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <%= render 'layouts/user_info' %>
+            <%= render 'layouts/new_book' %>
+        </div>
+        <div class="col-xs-9">
+            <h1>Books</h1>
+            <table class="table table-hover table-inverse">
+                <thread>
+                    <tr>
+                        <th></th>
+                        <th>title</th>
+                        <th>Opinion</th>
+                        <th colspan=3></th>
+                    </tr>
+                </thread>
+                <tbody>
+                    <% @myBooks.each do |book| %>
+                    <tr>
+                        <td>
+                            <%= link_to user_path(book.user) do %>
+                                <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: 'jpg', fallback: "no_image.jpg", size: '50x50' %>
+                            <% end %>
+                        </td>
+                        <td><%= link_to book.title, book_path(book) %></td>
+                        <td><%= book.body %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

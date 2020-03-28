@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="notice-container">
+        <p class="notice"><%= flash[:notice] %></p>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <%= render 'layouts/user_info' %>
+            <%= render 'layouts/new_book' %>
+        </div>
+        <div class="col-xs-9">
+            <h1>Book detail</h1>
+            <table class="table table-hover table-inverse">
+                <thread>
+                    <tr>
+                        <th></th>
+                        <th>title</th>
+                        <th>Opinion</th>
+                        <th colspan=3></th>
+                    </tr>
+                </thread>
+                <tbody>
+                    <tr>
+                        <td>
+                            <%= link_to user_path(@showBook.user) do %>
+                                <%= attachment_image_tag @showBook.user, :profile_image, :fill, 60, 60, format: 'jpg', fallback: "no_image.jpg", size: '50x50' %>
+                            <% end %>
+                            <%= link_to @showBook.user.name, user_path(@showBook.user) %>
+                        </td>
+                        <td><%= @showBook.title %></td>
+                        <td><%= @showBook.body %></td>
+                        <% if @showBook.user_id === @user.id %>
+                        <td><%= link_to 'Edit', edit_book_path(@showBook), class: "btn-sm btn-success" %></td>
+                        <td><%= link_to 'Destroy', book_path(@showBook), method: :delete, class: "btn-sm btn-danger", data: {confirm: '本当に消しますか？'} %></td>
+                        <% else %>
+                        <td></td>
+                        <td></td>
+                        <% end %>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

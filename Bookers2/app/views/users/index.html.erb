@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="notice-container">
+        <p class="notice"><%= flash[:notice] %>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <%= render 'layouts/user_info' %>
+            <%= render 'layouts/new_book' %>
+        </div>
+        <div class="col-xs-9">
+            <h1>Users</h1>
+            <table class="table table-hover table-inverse">
+                <thread>
+                    <tr>
+                        <th>image</th>
+                        <th>name</th>
+                        <th colspan=3></th>
+                        <th></th>
+                    </tr>
+                </thread>
+                <tbody>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td>
+                            <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpg', fallback: "no_image.jpg", size: '50x50' %>
+                        </td>
+                        <td><%= user.name %></td>
+                        <td></td>
+                        <td><%= link_to 'Show', user_path(user) %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
